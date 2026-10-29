@@ -44,6 +44,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:5150
+      Keycloak__ClientSecret: ${KEYCLOAK_CLIENT_SECRET}
     depends_on:
       - postgres
       - keycloak

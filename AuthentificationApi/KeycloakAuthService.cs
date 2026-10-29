@@ -41,9 +41,7 @@ public class KeycloakAuthService
             return tokenResult!;
         }
 
-        //throw new Exception("Identifiant ou mot de passe incorrect");
-        // Erreur renvoyée par Keycloak (affichée pour comprendre la cause du refus)
-            var erreur = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Keycloak a refusé la connexion ({(int)response.StatusCode}) : {erreur}");
+        throw new Exception("Identifiant ou mot de passe incorrect");
+
     }
 }
