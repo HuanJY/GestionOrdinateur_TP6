@@ -1,0 +1,50 @@
+@page "/ordinateurs"
+@using GestionOrdinateurs.Shared
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@inject IHttpClientFactory HttpClientFactory
+
+<PageTitle>Ordinateurs</PageTitle>
+
+<h3>Liste des ordinateurs</h3>
+
+@if (ordinateurs == null)
+{
+    <p><em>Chargement</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Devise</th>
+                <th>Vendu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ordinateur in ordinateurs)
+            {
+                <tr>
+                    <td>@ordinateur.Nom</td>
+                    <td>@ordinateur.Prix</td>
+                    <td>€</td>
+                    <td>@(ordinateur.Vendu ? "Oui" : "Non")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private List<Ordinateur>? ordinateurs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = HttpClientFactory.CreateClient("GestionApi");
+        ordinateurs = await client.GetFromJsonAsync<List<Ordinateur>>("ordinateurs");
+    }
+}

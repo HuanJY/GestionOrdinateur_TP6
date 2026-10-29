@@ -1,0 +1,65 @@
+@page "/login"
+@using System.Net
+
+@inject IHttpClientFactory HttpClientFactory
+@inject ISessionStorageService SessionStorage
+@inject NavigationManager Navigation
+@inject JwtAuthenticationStateProvider AuthProvider
+
+<PageTitle>Connexion</PageTitle>
+
+<h3>Connexion</h3>
+
+<InputText @bind-Value="LoginSaisi" class="form-control" placeholder="Login (ex : user1)" />
+
+<button class="btn btn-primary mt-2" @onclick="SeConnecter">
+    Connecter
+</button>
+
+@if (!string.IsNullOrEmpty(MessageErreur))
+{
+    <div class="alert alert-danger mt-2">@MessageErreur</div>
+}
+
+@code
+{
+    // lgin saisi par l'user
+    private string LoginSaisi = "";
+
+    // en cas derreur
+    private string? MessageErreur;
+
+    private async Task SeConnecter()
+    {
+        MessageErreur = null;
+
+        if (string.IsNullOrWhiteSpace(LoginSaisi))
+        {
+            MessageErreur = "Veuillez saisir un login.";
+            return;
+        }
+
+    
+        var client = HttpClientFactory.CreateClient("AuthApi");
+        var reponse = await client.PostAsync($"Authentication/login?login={Uri.EscapeDataString(LoginSaisi)}", null);
+
+    
+        if (reponse.StatusCode == HttpStatusCode.NotFound)
+        {
+            MessageErreur = $"L'utilisateur « {LoginSaisi} » n'existe pas.";
+            return;
+        }
+
+        if (!reponse.IsSuccessStatusCode)
+        {
+            MessageErreur = "Erreur lors de la connexion.";
+            return;
+        }
+
+        // Q7 tp5
+        var token = await reponse.Content.ReadAsStringAsync();
+        await SessionStorage.SetItemAsync("jwtToken", token);
+        AuthProvider.NotifyUserAuthentication(token);
+        Navigation.NavigateTo("/");
+    }
+}

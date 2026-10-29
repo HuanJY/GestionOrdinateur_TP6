@@ -1,0 +1,59 @@
+@page "/reparations"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@inject IHttpClientFactory HttpClientFactory
+
+<PageTitle>Réparations</PageTitle>
+
+<h3>Historique des réparations</h3>
+
+@if (historique == null)
+{
+    <p><em>Chargement</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ordinateur</th>
+                <th>Technicien</th>
+                <th>Type de réparation</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ligne in historique)
+            {
+                <tr>
+                    <td>@ligne.NomOrdinateur</td>
+                    <td>@ligne.Technicien</td>
+                    <td>@ligne.TypeReparation</td>
+                    <td>@ligne.DateIntervention.ToString("dd/MM/yyyy HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+  
+    private List<HistoriqueReparation>? historique;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = HttpClientFactory.CreateClient("GestionApi");
+        historique = await client.GetFromJsonAsync<List<HistoriqueReparation>>("reparation/historique");
+    }
+
+    
+    public record HistoriqueReparation(
+        int OrdinateurId,
+        string NomOrdinateur,
+        string Technicien,
+        string TypeReparation,
+        DateTime DateIntervention
+    );
+}
