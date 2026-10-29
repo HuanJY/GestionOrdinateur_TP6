@@ -51,9 +51,9 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
 
         foreach (var claim in token.Claims)
         {
-            if (claim.Type == "role")
+            if (claim.Type == "role" || claim.Type == "roles")
                 claims.Add(new Claim(ClaimTypes.Role, claim.Value));
-            else if (claim.Type == "unique_name")
+            else if (claim.Type == "unique_name" || claim.Type == "preferred_username")
                 claims.Add(new Claim(ClaimTypes.Name, claim.Value));
             else
                 claims.Add(claim);

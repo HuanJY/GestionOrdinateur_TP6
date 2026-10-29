@@ -1,5 +1,6 @@
 @page "/login"
 @using System.Net
+@using GestionOrdinateurs.Shared
 
 @inject IHttpClientFactory HttpClientFactory
 @inject ISessionStorageService SessionStorage
@@ -10,7 +11,8 @@
 
 <h3>Connexion</h3>
 
-<InputText @bind-Value="LoginSaisi" class="form-control" placeholder="Login (ex : user1)" />
+<InputText @bind-Value="UsernameSaisi" class="form-control" placeholder="Utilisateur (ex : user1)" />
+<InputText @bind-Value="PasswordSaisi" type="password" class="form-control mt-2" placeholder="Mot de passe" />
 
 <button class="btn btn-primary mt-2" @onclick="SeConnecter">
     Connecter
@@ -23,30 +25,32 @@
 
 @code
 {
-    // lgin saisi par l'user
-    private string LoginSaisi = "";
 
-    // en cas derreur
+    private string UsernameSaisi = "";
+    private string PasswordSaisi = "";
+
+    
     private string? MessageErreur;
 
     private async Task SeConnecter()
     {
         MessageErreur = null;
 
-        if (string.IsNullOrWhiteSpace(LoginSaisi))
+        if (string.IsNullOrWhiteSpace(UsernameSaisi) || string.IsNullOrWhiteSpace(PasswordSaisi))
         {
-            MessageErreur = "Veuillez saisir un login.";
+            MessageErreur = "Veuillez saisir l'utilisateur et le mot de passe.";
             return;
         }
 
     
         var client = HttpClientFactory.CreateClient("AuthApi");
-        var reponse = await client.PostAsync($"Authentication/login?login={Uri.EscapeDataString(LoginSaisi)}", null);
+        var reponse = await client.PostAsJsonAsync("Authentication/login-keycloak",
+            new KeycloakLoginRequest(UsernameSaisi, PasswordSaisi));
 
     
-        if (reponse.StatusCode == HttpStatusCode.NotFound)
+        if (reponse.StatusCode == HttpStatusCode.Unauthorized)
         {
-            MessageErreur = $"L'utilisateur « {LoginSaisi} » n'existe pas.";
+            MessageErreur = "Identifiant ou mot de passe incorrect.";
             return;
         }
 
@@ -56,10 +60,16 @@
             return;
         }
 
-        // Q7 tp5
-        var token = await reponse.Content.ReadAsStringAsync();
-        await SessionStorage.SetItemAsync("jwtToken", token);
-        AuthProvider.NotifyUserAuthentication(token);
+    
+        var tokenResponse = await reponse.Content.ReadFromJsonAsync<TokenResponse>();
+        if (tokenResponse == null)
+        {
+            MessageErreur = "Réponse invalide du serveur.";
+            return;
+        }
+
+        await SessionStorage.SetItemAsync("jwtToken", tokenResponse.AccessToken);
+        AuthProvider.NotifyUserAuthentication(tokenResponse.AccessToken);
         Navigation.NavigateTo("/");
     }
 }

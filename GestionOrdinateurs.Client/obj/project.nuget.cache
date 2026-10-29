@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W4cwCYWWRw8=",
+  "dgSpecHash": "Kngx/wa2JZE=",
   "success": true,
   "projectFilePath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Client\\GestionOrdinateurs.Client.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\10.0.12\\microsoft.aspnetcore.components.forms.10.0.12.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.components.web\\10.0.12\\microsoft.aspnetcore.components.web.10.0.12.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\10.0.12\\microsoft.aspnetcore.components.webassembly.10.0.12.nupkg.sha512",
+    "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\10.0.12\\microsoft.aspnetcore.components.webassembly.authentication.10.0.12.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\10.0.12\\microsoft.aspnetcore.components.webassembly.devserver.10.0.12.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.metadata\\10.0.13\\microsoft.aspnetcore.metadata.10.0.13.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.bcl.cryptography\\10.0.2\\microsoft.bcl.cryptography.10.0.2.nupkg.sha512",
