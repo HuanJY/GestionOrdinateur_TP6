@@ -12,24 +12,27 @@ namespace AuthentificationApi.Controllers;
 [Route("api/[controller]")]
 public class AuthenticationController : ControllerBase
 {
-    
+
     private readonly IConfiguration _configuration;
 
-    
+
     private readonly IHttpClientFactory _httpClientFactory;
 
-    
-    public AuthenticationController(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+
+    private readonly KeycloakAuthService _keycloakAuthService;
+
+   
+    public AuthenticationController(IConfiguration configuration, IHttpClientFactory httpClientFactory, KeycloakAuthService keycloakAuthService)
     {
         _configuration = configuration;
         _httpClientFactory = httpClientFactory;
+        _keycloakAuthService = keycloakAuthService;
     }
 
   
     [HttpPost("login")]
     public async Task<IActionResult> Login(string login)
     {
-        
         var client = _httpClientFactory.CreateClient("GestionOrdinateursApi");
         var reponse = await client.GetAsync($"users/{login}");
 
@@ -40,18 +43,31 @@ public class AuthenticationController : ControllerBase
         if (user == null)
             return NotFound("L'utilisateur n'existe pas");
 
-     
         var jwtKey = _configuration["Jwt:Key"] ?? "";
         var key = Encoding.ASCII.GetBytes(jwtKey);
 
         return Ok(GenTokenJWT(key, user.Role, user.Login));
     }
 
+   
+    [HttpPost("login-keycloak")]
+    public async Task<IActionResult> LoginKeycloak(KeycloakLoginRequest request)
+    {
+        try
+        {
+            var token = await _keycloakAuthService.LoginAsync(request.Username, request.Password);
+            return Ok(token);
+        }
+        catch (Exception ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+    }
+
     
     private string GenTokenJWT(byte[] key, RoleEnum role, string login)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-
 
         var claims = new[]
         {

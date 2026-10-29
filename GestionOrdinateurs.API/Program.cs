@@ -60,32 +60,52 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    options.RequireHttpsMetadata = false;
+    options.RequireHttpsMetadata = false; // Uniquement en développement
     options.SaveToken = true;
+
+    // Garde les noms des claims tels qu'ils sont dans le token Keycloak
+    options.MapInboundClaims = false;
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
+        ValidateIssuer = true,
+        ValidIssuer = builder.Configuration["Keycloak:Issuer"],
+        ValidateAudience = true,
+        ValidAudience = "account",
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = false,
-        ValidateAudience = false
+        ValidateLifetime = true,
+
+        // Le login est dans "preferred_username", les rôles dans "roles" (le mapper de l'étape 1)
+        NameClaimType = "preferred_username",
+        RoleClaimType = "roles",
+
+        // Récupère les clés publiques de Keycloak pour vérifier la signature du token
+        IssuerSigningKeyResolver = (token, securityToken, kid, parameters) =>
+        {
+            var client = new HttpClient();
+            var keyUri = $"{builder.Configuration["Keycloak:BaseUrl"]}/realms/{builder.Configuration["Keycloak:Realm"]}/protocol/openid-connect/certs";
+            var response = client.GetAsync(keyUri).Result;
+            var keys = new JsonWebKeySet(response.Content.ReadAsStringAsync().Result);
+            return keys.GetSigningKeys();
+        }
     };
+
     options.Events = new JwtBearerEvents
     {
-        
+        // Token valide : on affiche l'utilisateur dans la console
         OnTokenValidated = context =>
         {
             Console.WriteLine($"Utilisateur utilisant un Token Valide --- {context.Principal?.Identity?.Name ?? "Anonymous"}");
             return Task.CompletedTask;
         },
-     
+        // Token invalide (mauvaise signature, expiré, mauvais émetteur...)
         OnAuthenticationFailed = context =>
         {
-            Console.WriteLine("Token Invalide");
+            Console.WriteLine($"Token Invalide : {context.Exception.Message}");
             return Task.CompletedTask;
         }
     };
 });
-
 
 builder.Services.AddAuthorization();
 

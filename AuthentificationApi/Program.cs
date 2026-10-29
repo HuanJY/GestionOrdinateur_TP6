@@ -1,3 +1,5 @@
+using AuthentificationApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -21,6 +23,8 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
+
+builder.Services.AddHttpClient<KeycloakAuthService>();
 
 var app = builder.Build();
 
