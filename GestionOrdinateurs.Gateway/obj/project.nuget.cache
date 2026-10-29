@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1X96TJTNXX8=",
+  "dgSpecHash": "mj/3Unrrilk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.Gateway\\GestionOrdinateurs.Gateway.csproj",
+  "projectFilePath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Gateway\\GestionOrdinateurs.Gateway.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.12\\microsoft.aspnetcore.openapi.10.0.12.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.openapi\\2.12.0\\microsoft.openapi.2.12.0.nupkg.sha512",

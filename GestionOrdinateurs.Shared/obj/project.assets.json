@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj",
       "projectName": "GestionOrdinateurs.Shared",
-      "projectPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj",
+      "projectPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj",
       "packagesPath": "C:\\Users\\huanj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.Shared\\obj\\",
+      "outputPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\huanj\\AppData\\Roaming\\NuGet\\NuGet.Config"

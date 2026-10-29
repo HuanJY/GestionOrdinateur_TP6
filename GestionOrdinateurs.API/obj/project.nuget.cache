@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UzzBQlvXewY=",
+  "dgSpecHash": "lmqV6muoNWc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.API\\GestionOrdinateurs.API.csproj",
+  "projectFilePath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.API\\GestionOrdinateurs.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\huanj\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.13\\microsoft.aspnetcore.authentication.jwtbearer.10.0.13.nupkg.sha512",

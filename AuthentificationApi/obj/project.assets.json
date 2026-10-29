@@ -1407,11 +1407,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\AuthentificationApi\\AuthentificationApi.csproj",
+      "projectUniqueName": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\AuthentificationApi\\AuthentificationApi.csproj",
       "projectName": "AuthentificationApi",
-      "projectPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\AuthentificationApi\\AuthentificationApi.csproj",
+      "projectPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\AuthentificationApi\\AuthentificationApi.csproj",
       "packagesPath": "C:\\Users\\huanj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\AuthentificationApi\\obj\\",
+      "outputPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\AuthentificationApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\huanj\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1427,8 +1427,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj": {
-              "projectPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj"
+            "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj": {
+              "projectPath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Shared\\GestionOrdinateurs.Shared.csproj"
             }
           }
         }

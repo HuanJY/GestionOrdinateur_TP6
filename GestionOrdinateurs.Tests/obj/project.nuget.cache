@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JfEWQUhFae8=",
+  "dgSpecHash": "2pZG0sv2CFQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP5_HuanjieYEN\\GestionOrdinateurs.Tests\\GestionOrdinateurs.Tests.csproj",
+  "projectFilePath": "C:\\Users\\huanj\\Documents\\INGE2\\DotnetC#\\GestionOrdinateurs.TP6_HuanjieYEN\\GestionOrdinateurs.Tests\\GestionOrdinateurs.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\huanj\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\huanj\\.nuget\\packages\\fluentassertions\\8.11.0\\fluentassertions.8.11.0.nupkg.sha512",
