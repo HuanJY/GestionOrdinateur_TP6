@@ -7,7 +7,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient("GestionOrdinateursApi", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5102/api/");
+    client.BaseAddress = new Uri("http://gestionordinateurs-api:5102/api/");
 });
 
 
